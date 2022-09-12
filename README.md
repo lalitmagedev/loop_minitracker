@@ -1,5 +1,5 @@
-# loop_minitracker
-First of all, install the module in Magento.
+# Loop Mini Tracker
+First of all, install the module in Magento 2.4.x.
 
 ### Check Tracking Info
 * Add a product to the cart
@@ -8,4 +8,4 @@ First of all, install the module in Magento.
 
 ### Call API to get the tracking info
 * Hit the API on the POSTMAN <Magento_url>/rest/V1/tracking
-* You will get the response fetched from the DataBase
+* You will get the response fetched from the Database
