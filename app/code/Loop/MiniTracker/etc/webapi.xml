@@ -16,4 +16,10 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <!-- <route url="/V1/tracking" method="GET">
+        <service class="Loop\MiniTracker\Api\Data\MiniTrackerItemInterface" method="getItem" />
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route> -->
 </routes>

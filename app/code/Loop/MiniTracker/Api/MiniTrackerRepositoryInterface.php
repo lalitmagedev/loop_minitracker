@@ -1,5 +1,4 @@
 <?php
-
 namespace Loop\MiniTracker\Api;
 
 use Loop\MiniTracker\Api\Data\MiniTrackerInterface;
@@ -17,7 +16,7 @@ interface MiniTrackerRepositoryInterface
     /**
      * Retrieve tracking information which match a specified criteria.
      *
-     * @return \Loop\MiniTracker\Api\Data\MiniTrackerInterface[]
+     * @return \Loop\MiniTracker\Api\Data\MiniTrackerItemInterface
      */
     public function getList();
 }
