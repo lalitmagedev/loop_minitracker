@@ -2,18 +2,15 @@
 
 namespace Loop\MiniTracker\Model;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
-use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Reflection\DataObjectProcessor;
-
 use Loop\MiniTracker\Api\MiniTrackerRepositoryInterface;
 use Loop\MiniTracker\Api\Data\MiniTrackerInterface;
 use Loop\MiniTracker\Model\MiniTrackerFactory;
 use Loop\MiniTracker\Model\ResourceModel\MiniTracker as MiniTrackerResourceModel;
 use Loop\MiniTracker\Model\ResourceModel\MiniTracker\CollectionFactory;
+use Loop\MiniTracker\Api\Data\MiniTrackerItemInterface;
 
 /**
  * @api
@@ -47,24 +44,32 @@ class MiniTrackerRepository implements MiniTrackerRepositoryInterface
     protected $dataObjectProcessor;
 
     /**
+     * @var \Loop\MiniTracker\Api\Data\MiniTrackerItemInterface
+     */
+    private $miniTrackerItem;
+
+    /**
      * @param MiniTrackerResourceModel      $resourceModel
      * @param MiniTrackerFactory            $miniTrackerFactory
      * @param DataObjectProcessor           $dataObjectProcessor
      * @param CollectionFactory             $collectionFactory
      * @param SearchResultsInterfaceFactory $searchResultsFactory
+     * @param MiniTrackerItemInterface      $miniTrackerItem
      */
     public function __construct(
         MiniTrackerResourceModel $resourceModel,
         MiniTrackerFactory  $miniTrackerFactory,
         DataObjectProcessor $dataObjectProcessor,
         CollectionFactory $collectionFactory,
-        SearchResultsInterfaceFactory $searchResultsFactory
+        SearchResultsInterfaceFactory $searchResultsFactory,
+        MiniTrackerItemInterface $miniTrackerItem
     ) {
         $this->resourceModel = $resourceModel;
         $this->miniTrackerFactory = $miniTrackerFactory;
         $this->dataObjectProcessor = $dataObjectProcessor;
         $this->collectionFactory    = $collectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
+        $this->miniTrackerItem = $miniTrackerItem;
     }
 
     /**
@@ -86,16 +91,10 @@ class MiniTrackerRepository implements MiniTrackerRepositoryInterface
     /**
      * Retrun tracking information records.
      *
-     * @return \Loop\MiniTracker\Api\Data\MiniTrackerInterface[]
+     * @return \Loop\MiniTracker\Api\Data\MiniTrackerItemInterface
      */
     public function getList()
     {
-
-        $collection = $this->collectionFactory->create();
-        $objects = [];
-        foreach ($collection as $objectModel) {
-            $objects[] = $objectModel;
-        }
-        return $objects;
+        return $this->miniTrackerItem;
     }
 }
